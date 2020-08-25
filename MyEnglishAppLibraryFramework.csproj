@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnglishAppControl.cs" />
+    <Compile Include="ICorrectable.cs" />
     <Compile Include="IListAnswers.cs" />
     <Compile Include="IPrintable.cs" />
     <Compile Include="ISetting.cs" />

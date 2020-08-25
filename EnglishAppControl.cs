@@ -4,7 +4,7 @@ using System.IO;
 
 namespace MyEnglishAppLibraryFramework
 {
-    public class EnglishAppControl : IPrintable, IListAnswers, ISetting
+    public class EnglishAppControl : IPrintable, IListAnswers, ISetting,ICorrectable
     {
         public static event Action NewFile;
         /// <summary>
@@ -119,7 +119,7 @@ namespace MyEnglishAppLibraryFramework
                     }
                     arr[i] = k;
                     string answer = Console.ReadLine();
-                    if (answer == russianWords[k])
+                    if (russianWords[k].Contains(answer) || answer == russianWords[k])
                     {
                         Console.WriteLine();
                         Console.WriteLine("Вы ответили правильно!");
@@ -199,7 +199,7 @@ namespace MyEnglishAppLibraryFramework
                     }
                     arr[i] = k;
                     string answer = Console.ReadLine();
-                    if (answer == englishWords[k])
+                    if (englishWords[k].Contains(answer) || answer == englishWords[k])
                     {
                         Console.WriteLine();
                         Console.WriteLine("Вы ответили правильно!");
@@ -258,10 +258,55 @@ namespace MyEnglishAppLibraryFramework
         {
             Console.WriteLine("Введите название нового файла");
             string name = Console.ReadLine();
-            StreamWriter sw = new StreamWriter($"{name}.txt", true);
+            FileInfo fi = new FileInfo(name);
+            fi.CreateText();
             NewFile?.Invoke();
-            sw.Close();
         }
-        
+        public void FindWord()
+        {
+            Console.WriteLine("Введите слово на английском");
+            string name = Console.ReadLine();
+            for (int i = 0; i < englishWords.Count; i++)
+            {
+                if (name == englishWords[i])
+                {
+                    Console.WriteLine($"{englishWords[i]}   ->  {russianWords[i]}");
+                    break;
+                }
+            }
+        }
+
+        public void CorrectWord()
+        {
+
+
+            Console.WriteLine("Введите, перевод какого слова вы будете исправлять (введите eng или rus), а затем само слово");
+            string typeWord = Console.ReadLine();
+            string word = Console.ReadLine();
+            Console.WriteLine("Теперь введите исправленный перевод");
+            string newword = Console.ReadLine();
+            if (typeWord == "eng")
+            {
+                for (int i = 0; i < englishWords.Count; i++)
+                {
+                    if (englishWords[i] == word)
+                    {
+                        russianWords[i] = newword;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < russianWords.Count; i++)
+                {
+                    if (russianWords[i] == word)
+                    {
+                        englishWords[i] = newword;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
