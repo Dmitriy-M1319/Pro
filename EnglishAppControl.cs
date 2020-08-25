@@ -254,6 +254,9 @@ namespace MyEnglishAppLibraryFramework
             Console.WriteLine("Если вы создали новый словарь, то для работы с функциями 2, 3, 4 перезапустите приложение и введите его название снова");
             Console.WriteLine();
         }
+        /// <summary>
+        /// Создание файла для нового словаря
+        /// </summary>
         public static void CreateNewDictionary()
         {
             Console.WriteLine("Введите название нового файла");
@@ -262,6 +265,9 @@ namespace MyEnglishAppLibraryFramework
             fi.CreateText();
             NewFile?.Invoke();
         }
+        /// <summary>
+        /// Поиск слова в словаре
+        /// </summary>
         public void FindWord()
         {
             Console.WriteLine("Введите слово на английском");
@@ -275,7 +281,9 @@ namespace MyEnglishAppLibraryFramework
                 }
             }
         }
-
+        /// <summary>
+        /// Исправление перевода необходимого слова
+        /// </summary>
         public void CorrectWord()
         {
 
