@@ -4,8 +4,9 @@ using System.IO;
 
 namespace MyEnglishAppLibraryFramework
 {
-    public class EnglishAppControl : IPrintable, IListAnswers, ISetting,ICorrectable
+    public class EnglishAppControl : IPrintable, IListAnswers, ISetting,ICorrectable,ICheckable
     {
+
         public static event Action NewFile;
         /// <summary>
         /// Лист английских слов
@@ -20,6 +21,10 @@ namespace MyEnglishAppLibraryFramework
         /// </summary>
         public int Count { get; }
         public string FileName { get; }
+        /// <summary>
+        /// Название каталога для хранения словарей
+        /// </summary>
+        public string FolderName { get; set; }
         public EnglishAppControl()
         {
             englishWords = new List<string>();
@@ -76,6 +81,18 @@ namespace MyEnglishAppLibraryFramework
                 Console.WriteLine();
             }
         }
+        /// <summary>
+        /// Создание папки со словарями
+        /// </summary>
+        /// <param name="name"></param>
+        public void CreateFolder(string name)
+        {
+            FolderName = name;
+            DirectoryInfo dir = new DirectoryInfo(".");
+            dir.CreateSubdirectory(FolderName);
+            
+        }
+
         /// <summary>
         /// Тест на русский перевод
         /// </summary>
@@ -314,6 +331,20 @@ namespace MyEnglishAppLibraryFramework
                         break;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Вывод списка доступных для пользователя словарей
+        /// </summary>
+        public void CheckDictionaries()
+        {
+            Console.WriteLine("Сейчас будет доступен список имеющихся словарей");
+            DirectoryInfo dir = new DirectoryInfo(FolderName);
+            var dictionaries = dir.GetFiles(".txt", SearchOption.AllDirectories);
+            foreach (FileInfo file in dictionaries)
+            {
+                Console.WriteLine(file.Name);
             }
         }
     }
