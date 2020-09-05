@@ -29,6 +29,8 @@ namespace MyEnglishAppLibraryFramework
         public EnglishAppControl()
         {
             DirectoryInfo dr = new DirectoryInfo(".");
+            //1 раз: для того, чтобы этот объект не был null
+            newFolder = new DirectoryInfo($@"{dr.FullName}\{FolderName}");
             //Попытка чтения названия папки со словарями из специального файла
             try
             {
@@ -39,6 +41,8 @@ namespace MyEnglishAppLibraryFramework
                     {
                         FolderName = line;
                     }
+                    //В этот раз объект создается, если уже названная папка существует
+                    newFolder = new DirectoryInfo($@"{dr.FullName}\{FolderName}");
                 }
             }
             catch (Exception)
@@ -47,13 +51,15 @@ namespace MyEnglishAppLibraryFramework
                 goto Link;
             }
             
-            newFolder = new DirectoryInfo($@"{dr.FullName}\{FolderName}");
+           
             //-> Вот сюда
             Link:
+            // Создание новой папки
             if(!newFolder.Exists)
             {
                 Console.WriteLine("Введите название папки, где будут храниться словари");
                 FolderName = Console.ReadLine();
+                //3 раз: создается новая папка, если таковой не было
                 newFolder= new DirectoryInfo($@"{dr.FullName}\{FolderName}");
                 newFolder.Create();
                 using (StreamWriter sw =File.CreateText("File With FolderName"))
@@ -63,6 +69,12 @@ namespace MyEnglishAppLibraryFramework
             }
             englishWords = new List<string>();
             russianWords = new List<string>();
+            Console.WriteLine("Хотите просмотреть все словари?\nТогда введите да");
+            string str = Console.ReadLine();
+            if (str=="да")
+            {
+                this.CheckDictionaries();
+            }
             Console.WriteLine("Введите название словаря, с которым хотите работать");
             string name = Console.ReadLine();
             FileName = name;
@@ -287,7 +299,7 @@ namespace MyEnglishAppLibraryFramework
             {
                 string str = englishword + " " + russianword;
                 sw.WriteLine(str);
-
+                sw.Close();
             }
             Console.WriteLine();
             Console.WriteLine("Добавлено");
@@ -302,7 +314,7 @@ namespace MyEnglishAppLibraryFramework
             Console.WriteLine("Введите название нового файла");
             string name = Console.ReadLine();
             StreamWriter sw = new StreamWriter($@"{newFolder.FullName}\{name}.txt", true);
-            
+            sw.Close();
             NewFile?.Invoke();
         }
         /// <summary>
@@ -355,7 +367,15 @@ namespace MyEnglishAppLibraryFramework
                     }
                 }
             }
-            //TODO Реализовать перезапись файла с исправленным переводом
+            using (StreamWriter sw= new StreamWriter($@"{newFolder.FullName}\{FileName}.txt", false))
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    string str = englishWords[i] + " " + russianWords[i];
+                    sw.WriteLine(str);
+                }
+                sw.Close();
+            }
         }
 
         /// <summary>
@@ -364,7 +384,7 @@ namespace MyEnglishAppLibraryFramework
         public void CheckDictionaries()
         {
             Console.WriteLine("Сейчас будет доступен список имеющихся словарей");
-            var dictionaries = newFolder.GetFiles(".txt", SearchOption.AllDirectories);
+            FileInfo[] dictionaries = newFolder.GetFiles("*.txt", SearchOption.AllDirectories);
             foreach (FileInfo file in dictionaries)
             {
                 Console.WriteLine(file.Name);
