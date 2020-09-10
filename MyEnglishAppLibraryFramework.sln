@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEnglishAppLibraryFramewor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEnglishAppNET", "..\MyEnglishAppNET\MyEnglishAppNET.csproj", "{0B0E7245-9F8C-4DAF-9D51-C4175145294F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEnglishAppWinForms", "MyEnglishAppWinForms\MyEnglishAppWinForms.csproj", "{2A68E923-6A68-4387-8ED0-AEF7B075BBEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleVersion", "ConsoleVersion", "{1DAA6C6B-5D38-4B65-9BAF-A9485A19B014}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesktopVersion", "DesktopVersion", "{80EC9D89-EBD6-4CD1-AC9E-4BAD56652FF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +27,18 @@ Global
 		{0B0E7245-9F8C-4DAF-9D51-C4175145294F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B0E7245-9F8C-4DAF-9D51-C4175145294F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B0E7245-9F8C-4DAF-9D51-C4175145294F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A68E923-6A68-4387-8ED0-AEF7B075BBEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A68E923-6A68-4387-8ED0-AEF7B075BBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A68E923-6A68-4387-8ED0-AEF7B075BBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A68E923-6A68-4387-8ED0-AEF7B075BBEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2543F81-989E-4DEA-8629-053B4EC87A4D} = {1DAA6C6B-5D38-4B65-9BAF-A9485A19B014}
+		{0B0E7245-9F8C-4DAF-9D51-C4175145294F} = {1DAA6C6B-5D38-4B65-9BAF-A9485A19B014}
+		{2A68E923-6A68-4387-8ED0-AEF7B075BBEF} = {80EC9D89-EBD6-4CD1-AC9E-4BAD56652FF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71378D40-7789-43DE-B94E-A0BEA6A1BFAB}

@@ -1,0 +1,414 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
+using System.Threading;
+
+namespace MyEnglishAppWinForms
+{
+   /// <summary>
+   /// Часть класса с внутренней логикой программы
+   /// </summary>
+    public partial class Form1
+    {
+        private DirectoryInfo newFolder;
+        private string answer="";
+        private string typeword;
+        /// <summary>
+        /// Событие добавления новых слов
+        /// </summary>
+        public static event Action NewWords;
+        /// <summary>
+        /// Событие создания нового словаря
+        /// </summary>
+        public static event Action NewFile;
+        /// <summary>
+        /// Событие успешной замены неправильного перевода
+        /// </summary>
+        public static event Action Correcting;
+        /// <summary>
+        /// Лист английских слов
+        /// </summary>
+        private List<string> englishWords;
+        /// <summary>
+        /// Лист русских слов
+        /// </summary>
+        private List<string> russianWords;
+        /// <summary>
+        /// Количество слов в словаре
+        /// </summary>
+        public int Count { get; set; }
+        public string FileName { get; set; }
+        /// <summary>
+        /// Название каталога для хранения словарей
+        /// </summary>
+        public string FolderName { get; set; } = "-";
+        /// <summary>
+        /// Создание пользователя приложения
+        /// </summary>
+        public void CreateUser()
+        {
+            DirectoryInfo folderDirectory = new DirectoryInfo(".");
+            //1 раз: для того, чтобы этот объект не был null
+            newFolder = new DirectoryInfo($@"{folderDirectory.FullName}\{FolderName}");
+            //Попытка чтения названия папки со словарями из специального файла
+            try
+            {
+                using (StreamReader sr = File.OpenText("File With FolderName"))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        FolderName = line;
+                    }
+                    //В этот раз объект создается, если уже названная папка существует
+                    newFolder = new DirectoryInfo($@"{folderDirectory.FullName}\{FolderName}");
+                }
+            }
+            catch (Exception)
+            {
+                //Если такого файла нет, то переходим по ссылке к созданию папки и файла->
+                goto Link;
+            }
+
+
+        //-> Вот сюда
+        Link:
+            // Создание новой папки
+            if (!newFolder.Exists)
+            {
+                while (true)
+                {
+                    if (FolderName != "-")
+                    {
+                        break;
+                    }
+                }
+                //3 раз: создается новая папка, если таковой не было
+                newFolder = new DirectoryInfo($@"{folderDirectory.FullName}\{FolderName}");
+                newFolder.Create();
+                using (StreamWriter sw = File.CreateText("File With FolderName"))
+                {
+                    sw.WriteLine(FolderName);
+                }
+            }
+            englishWords = new List<string>();
+            russianWords = new List<string>();
+            try
+            {
+                using (StreamReader sr = new StreamReader($@"{newFolder.FullName}\{FileName}.txt"))
+                {
+                    string line;
+                    string[] words;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        words = line.Split(new char[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                        englishWords.Add(words[0]);
+                        russianWords.Add(words[1]);
+                    }
+                }
+                Count = englishWords.Count;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Необходимо создать новый словарь\nВоспользуйтесь второй функцией!","!!!");
+            }
+
+
+        }
+        /// <summary>
+        /// Создание нового текстового файла для словаря
+        /// </summary>
+        public void CreateNewDictionary()
+        {
+            string nameDictionaty = createDictionaryText.Text;
+            StreamWriter sw = new StreamWriter($@"{newFolder.FullName}\{nameDictionaty}.txt", true);
+            FileName = nameDictionaty;
+            sw.Close();
+            NewFile?.Invoke();
+            createDictionaryText.Text = "";
+        }
+        /// <summary>
+        /// Вывод списка доступных словарей
+        /// </summary>
+        public void CheckDictionaries()
+        {
+            string line = "";
+            line += "Сейчас будет доступен список имеющихся словарей:\n";
+            FileInfo[] dictionaries = newFolder.GetFiles("*.txt", SearchOption.AllDirectories);
+            foreach (FileInfo file in dictionaries)
+            {
+                line += $"{file.Name}\n";
+            }
+            MessageBox.Show(line, "Список");
+        }
+        /// <summary>
+        /// Замена неправильного перевода
+        /// </summary>
+        public void CorrectWord()
+        {
+
+            if (typeword == "eng")
+            {
+                for (int i = 0; i < englishWords.Count; i++)
+                {
+                    if (englishWords[i] == textBox3.Text)
+                    {
+                        englishWords[i] = textBox4.Text;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < russianWords.Count; i++)
+                {
+                    if (russianWords[i] == textBox3.Text)
+                    {
+                        russianWords[i] = textBox4.Text;
+                        break;
+                    }
+                }
+            }
+            using (StreamWriter sw = new StreamWriter($@"{newFolder.FullName}\{FileName}.txt", false))
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    string str = englishWords[i] + "\t" + russianWords[i];
+                    sw.WriteLine(str);
+                }
+                sw.Close();
+                Correcting?.Invoke();
+            }
+            textBox3.Text = "";
+            textBox4.Text = "";
+        }
+        /// <summary>
+        /// Тестирование для проверки знаний на русский перевод
+        /// </summary>
+        public  void ListRussianAnswers()
+        {
+            Thread thread = new Thread(new ThreadStart(() => {
+                int trueAnswers = 0;
+                bool count;
+                List<string> falseanswers = new List<string>();
+                int[] arr = new int[Count];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = -1;
+                }
+                Random random = new Random();
+                for (int i = 0; i < Count; i++)
+                {
+                Link:
+                    
+                    int k = random.Next(Count);
+                    count = false;
+                    for (int m = 0; m < arr.Length; m++)
+                    {
+                        if (arr[m] == k)
+                        {
+                            count = true;
+                            break;
+                        }
+                    }
+                    if (!count)
+                    {
+                        listAnswersLabel2.Text = $"Как будет перевод слова {englishWords[k]} ?";
+                        labelCount.Text = $"Осталось слов: {Count - i}";
+                    }
+                    else
+                    {
+                        goto Link;
+                    }
+                    arr[i] = k;
+
+                    while (true)
+                    {
+
+                        if (answer != "")
+                        {
+                            break;
+                        }
+                    }
+                    if (russianWords[k].Contains(answer) || answer == russianWords[k])
+                    {
+                        
+                        trueAnswers++;
+                    }
+                    else
+                    {
+
+                        falseanswers.Add(englishWords[k]+"->"+ russianWords[k]);
+
+                    }
+                    answer = "";
+                    textBox5.Text = "";
+                }
+                if (trueAnswers == Count)
+                {
+                    labelCount.Text = "";
+                    string line = "";
+                    line += "Поздравляем вас!! Вы правильно перевели все слова и закрепили знания. Успехов!\n";
+                    line += $"Общее количество правильных ответов: {trueAnswers} из {Count}";
+                    MessageBox.Show(line,"Результат");
+                }
+                else
+                {
+                    labelCount.Text = "";
+                    string line = "";
+                    line += "Увы, но вы справились не со всеми словами из темы. Учите лучше и пройдите тест еще раз\n";
+                    line += "Вы допустили ошибку в следующих словах:\n\n";
+                    foreach (string word in falseanswers)
+                    {
+                        line += $"{word}\n";
+                    }
+                    line+="\n";
+                    line += $"Общее количество правильных ответов: {trueAnswers} из {Count}";
+                    MessageBox.Show(line,"Результат");
+                }
+                
+
+
+            }));
+            thread.Start();
+
+        }
+        /// <summary>
+        /// Тестирование для проверки знаний на английский перевод
+        /// </summary>
+        public void ListEnglishAnswers()
+        {
+            Thread thread = new Thread(new ThreadStart(() => {
+                int trueAnswers = 0;
+                bool count;
+                List<string> falseanswers = new List<string>();
+                int[] arr = new int[Count];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = -1;
+                }
+                Random random = new Random();
+                for (int i = 0; i < Count; i++)
+                {
+                Link:
+
+                    int k = random.Next(Count);
+                    count = false;
+                    for (int m = 0; m < arr.Length; m++)
+                    {
+                        if (arr[m] == k)
+                        {
+                            count = true;
+                            break;
+                        }
+                    }
+                    if (!count)
+                    {
+                        listAnswersLabel2.Text = $"Как будет перевод слова {russianWords[k]} ?";
+                        labelCount.Text = $"Осталось слов: {Count - i}";
+                    }
+                    else
+                    {
+                        goto Link;
+                    }
+                    arr[i] = k;
+                    while (true)
+                    {
+                        if (answer != "")
+                        {
+                            break;
+                        }
+                    }
+
+                    if (englishWords[k].Contains(answer) || answer == englishWords[k])
+                    {
+
+                        trueAnswers++;
+                    }
+                    else
+                    {
+
+                        falseanswers.Add(englishWords[k] + "->" + russianWords[k]);
+
+                    }
+                    answer = "";
+                    textBox5.Text = "";
+                }
+                if (trueAnswers == Count)
+                {
+                    labelCount.Text = "";
+                    string line = "";
+                    line += "Поздравляем вас!! Вы правильно перевели все слова и закрепили знания. Успехов!\n\n";
+                    line += $"Общее количество правильных ответов: {trueAnswers} из {Count}";
+                    MessageBox.Show(line, "Результат");
+                }
+                else
+                {
+                    labelCount.Text = "";
+                    string line = "";
+                    line += "Увы, но вы справились не со всеми словами из темы. Учите лучше и пройдите тест еще раз\n";
+                    line += "Вы допустили ошибку в следующих словах:\n\n";
+                    foreach (string word in falseanswers)
+                    {
+                        line += $"{word}\n";
+                    }
+                    line += "\n";
+                    line += $"Общее количество правильных ответов: {trueAnswers} из {Count}";
+                    MessageBox.Show(line,"Результат");
+                }
+
+
+            }));
+            thread.Start();
+
+        }
+        /// <summary>
+        /// Поиск перевода слова по словарю
+        /// </summary>
+        public void FindWord()
+        { 
+            string name = textBox6.Text;
+            for (int i = 0; i < englishWords.Count; i++)
+            {
+                if (name == englishWords[i])
+                {
+                    MessageBox.Show($"{englishWords[i]}   ->  {russianWords[i]}","Найдено слово");
+                    break;
+                }
+            }
+            textBox6.Text = "";
+        }
+        /// <summary>
+        /// Вывод словаря на экран
+        /// </summary>
+        public void Print()
+        {
+            string line = "";
+            line += "Ваш словарь\nСлово\t\tПеревод\n";
+
+            for (int i = 0; i < Count; i++)
+            {
+                line += $"{englishWords[i]}   ->  {russianWords[i]}\n";
+            }
+            MessageBox.Show(line,"Вывод");
+        }
+        /// <summary>
+        /// Добавление новых слов в словарь
+        /// </summary>
+        /// <param name="englishword"></param>
+        /// <param name="russianword"></param>
+        public void SetNewWords(string englishword, string russianword)
+        {
+            
+            using (StreamWriter sw = new StreamWriter($@"{newFolder.FullName}\{FileName}.txt", true))
+            {
+                string str = englishword + "\t" + russianword;
+                sw.WriteLine(str);
+                sw.Close();
+            }
+            NewWords?.Invoke();
+            
+        }
+    }
+}
