@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
+using RepeatingControllers;
 
 namespace MyEnglishAppWinForms
 {
@@ -12,6 +14,8 @@ namespace MyEnglishAppWinForms
     public partial class Form1
     {
         private DirectoryInfo newFolder;
+        private MyLearningController controller;
+        private BinaryFormatter formatter = new BinaryFormatter();
         private string answer="";
         private string typeword;
         /// <summary>
@@ -94,6 +98,7 @@ namespace MyEnglishAppWinForms
             }
             englishWords = new List<string>();
             russianWords = new List<string>();
+            //Блок загрузки словаря
             try
             {
                 using (StreamReader sr = new StreamReader($@"{newFolder.FullName}\{FileName}.txt"))
@@ -114,19 +119,35 @@ namespace MyEnglishAppWinForms
                 MessageBox.Show("Необходимо создать новый словарь\nВоспользуйтесь второй функцией!","!!!");
             }
 
-
+            //Блок загрузки состояния объекта параметров повторений
+            try
+            {
+                using (FileStream fs=new FileStream($"{FileName}.dat",FileMode.OpenOrCreate))
+                {
+                    controller = (MyLearningController)formatter.Deserialize(fs);
+                    if(controller.NowTime.Date!=controller.NextTime.Date)
+                    {
+                        buttonSaveOptions.Enabled = false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                controller =new  MyLearningController();
+            }
+            
         }
         /// <summary>
         /// Создание нового текстового файла для словаря
         /// </summary>
         public void CreateNewDictionary()
         {
-            string nameDictionaty = createDictionaryText.Text;
+            string nameDictionaty = textBoxCreateDictionaryText.Text;
             StreamWriter sw = new StreamWriter($@"{newFolder.FullName}\{nameDictionaty}.txt", true);
             FileName = nameDictionaty;
             sw.Close();
             NewFile?.Invoke();
-            createDictionaryText.Text = "";
+            textBoxCreateDictionaryText.Text = "";
         }
         /// <summary>
         /// Вывод списка доступных словарей
@@ -152,9 +173,9 @@ namespace MyEnglishAppWinForms
             {
                 for (int i = 0; i < englishWords.Count; i++)
                 {
-                    if (englishWords[i] == textBox3.Text)
+                    if (englishWords[i] == textBoxOldWord.Text)
                     {
-                        englishWords[i] = textBox4.Text;
+                        englishWords[i] = textBoxNewWord.Text;
                         break;
                     }
                 }
@@ -163,9 +184,9 @@ namespace MyEnglishAppWinForms
             {
                 for (int i = 0; i < russianWords.Count; i++)
                 {
-                    if (russianWords[i] == textBox3.Text)
+                    if (russianWords[i] == textBoxOldWord.Text)
                     {
-                        russianWords[i] = textBox4.Text;
+                        russianWords[i] = textBoxNewWord.Text;
                         break;
                     }
                 }
@@ -180,8 +201,8 @@ namespace MyEnglishAppWinForms
                 sw.Close();
                 Correcting?.Invoke();
             }
-            textBox3.Text = "";
-            textBox4.Text = "";
+            textBoxOldWord.Text = "";
+            textBoxNewWord.Text = "";
         }
         /// <summary>
         /// Тестирование для проверки знаний на русский перевод
@@ -239,11 +260,11 @@ namespace MyEnglishAppWinForms
                     else
                     {
 
-                        falseanswers.Add(englishWords[k]+"->"+ russianWords[k]);
+                        falseanswers.Add(englishWords[k]+"->"+ russianWords[k] + "\n" + "(ошибка: " + answer + ")");
 
                     }
                     answer = "";
-                    textBox5.Text = "";
+                    textBoxAnswers.Text = "";
                 }
                 if (trueAnswers == Count)
                 {
@@ -251,6 +272,7 @@ namespace MyEnglishAppWinForms
                     string line = "";
                     line += "Поздравляем вас!! Вы правильно перевели все слова и закрепили знания. Успехов!\n";
                     line += $"Общее количество правильных ответов: {trueAnswers} из {Count}";
+                    listAnswersLabel2.Text = "";
                     MessageBox.Show(line,"Результат");
                 }
                 else
@@ -265,6 +287,7 @@ namespace MyEnglishAppWinForms
                     }
                     line+="\n";
                     line += $"Общее количество правильных ответов: {trueAnswers} из {Count}";
+                    listAnswersLabel2.Text = "";
                     MessageBox.Show(line,"Результат");
                 }
                 
@@ -329,11 +352,11 @@ namespace MyEnglishAppWinForms
                     else
                     {
 
-                        falseanswers.Add(englishWords[k] + "->" + russianWords[k]);
+                        falseanswers.Add(englishWords[k] + "->" + russianWords[k] + "\n" + "(ошибка: " + answer + ")");
 
                     }
                     answer = "";
-                    textBox5.Text = "";
+                    textBoxAnswers.Text = "";
                 }
                 if (trueAnswers == Count)
                 {
@@ -341,6 +364,7 @@ namespace MyEnglishAppWinForms
                     string line = "";
                     line += "Поздравляем вас!! Вы правильно перевели все слова и закрепили знания. Успехов!\n\n";
                     line += $"Общее количество правильных ответов: {trueAnswers} из {Count}";
+                    listAnswersLabel2.Text = "";
                     MessageBox.Show(line, "Результат");
                 }
                 else
@@ -355,6 +379,7 @@ namespace MyEnglishAppWinForms
                     }
                     line += "\n";
                     line += $"Общее количество правильных ответов: {trueAnswers} из {Count}";
+                    listAnswersLabel2.Text = "";
                     MessageBox.Show(line,"Результат");
                 }
 
@@ -368,7 +393,7 @@ namespace MyEnglishAppWinForms
         /// </summary>
         public void FindWord()
         { 
-            string name = textBox6.Text;
+            string name = textBoxFindWord.Text;
             for (int i = 0; i < englishWords.Count; i++)
             {
                 if (name == englishWords[i])
@@ -377,7 +402,7 @@ namespace MyEnglishAppWinForms
                     break;
                 }
             }
-            textBox6.Text = "";
+            textBoxFindWord.Text = "";
         }
         /// <summary>
         /// Вывод словаря на экран
@@ -396,8 +421,8 @@ namespace MyEnglishAppWinForms
         /// <summary>
         /// Добавление новых слов в словарь
         /// </summary>
-        /// <param name="englishword"></param>
-        /// <param name="russianword"></param>
+        /// <param name="englishword">Слово на английском</param>
+        /// <param name="russianword">Слово на русском</param>
         public void SetNewWords(string englishword, string russianword)
         {
             
@@ -408,7 +433,44 @@ namespace MyEnglishAppWinForms
                 sw.Close();
             }
             NewWords?.Invoke();
-            
+            //TODO:Добавить форму занесения данных
+        }
+
+       /// <summary>
+       /// Сохранение состояния объекта повторений
+       /// </summary>
+        public void SaveNewOptions()
+        {
+            int k = (int)controller.Date;
+            k++;
+            controller.CountOfRepeating++;
+            controller.Date = (Dates)k;
+            controller.NowTime = DateTime.Now;
+            switch (controller.Date)
+            {
+                case Dates.Now:
+                    controller.NextTime = controller.NowTime;
+                    break;
+                case Dates.Minutes:
+                    controller.NextTime = controller.NowTime.AddMinutes(30);
+                    break;
+                case Dates.Day:
+                    controller.NextTime = controller.NowTime.AddDays(2);
+                    break;
+                case Dates.Weeks:
+                    controller.NextTime = controller.NowTime.AddDays(15);
+                    break;
+                case Dates.Month:
+                    controller.NextTime = controller.NowTime.AddMonths(2);
+                    break;
+                default:
+                    throw new Exception("Недопустимая дата!");
+                    
+            }
+            using (FileStream fs = new FileStream($"{FileName}.dat", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, controller);
+            }
         }
     }
 }

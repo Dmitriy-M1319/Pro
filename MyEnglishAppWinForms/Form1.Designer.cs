@@ -31,26 +31,26 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxOldFile = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.NewFolderCreate = new System.Windows.Forms.Button();
+            this.buttobNewFolderCreate = new System.Windows.Forms.Button();
             this.textBoxNewFolder = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBoxFindWord = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonFindWord = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.button7 = new System.Windows.Forms.Button();
+            this.buttonPrintWords = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.domainUpDownSetLanguage = new System.Windows.Forms.DomainUpDown();
+            this.buttonCorrecrTranslate = new System.Windows.Forms.Button();
+            this.textBoxNewWord = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxOldWord = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,32 +58,35 @@
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.buttonCreateDictionary = new System.Windows.Forms.Button();
-            this.createDictionaryText = new System.Windows.Forms.TextBox();
+            this.textBoxCreateDictionaryText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.splitContainer8 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonSetNewWords = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBoxRussianWord = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.textBoxEnglishWord = new System.Windows.Forms.TextBox();
+            this.buttonPrintOptions = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.buttonPrintDictionaries = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.buttonSaveOptions = new System.Windows.Forms.Button();
             this.labelCount = new System.Windows.Forms.Label();
             this.buttonForTests = new System.Windows.Forms.Button();
             this.domainUpDownForTests = new System.Windows.Forms.DomainUpDown();
-            this.listAnswersSend = new System.Windows.Forms.Button();
+            this.buttonListAnswersSend = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.listAnswersLabel2 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
+            this.textBoxAnswers = new System.Windows.Forms.TextBox();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
-            this.label21 = new System.Windows.Forms.Label();
-            this.buttonDarkTheme = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.buttonLightTheme = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.buttonDarkTheme = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,10 +153,10 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer2.Panel1.Controls.Add(this.textBoxOldFile);
             this.splitContainer2.Panel1.Controls.Add(this.label16);
             this.splitContainer2.Panel1.Controls.Add(this.label14);
-            this.splitContainer2.Panel1.Controls.Add(this.NewFolderCreate);
+            this.splitContainer2.Panel1.Controls.Add(this.buttobNewFolderCreate);
             this.splitContainer2.Panel1.Controls.Add(this.textBoxNewFolder);
             this.splitContainer2.Panel1.Controls.Add(this.label2);
             this.splitContainer2.Panel1.Controls.Add(this.label1);
@@ -165,12 +168,12 @@
             this.splitContainer2.SplitterDistance = 111;
             this.splitContainer2.TabIndex = 0;
             // 
-            // textBox1
+            // textBoxOldFile
             // 
-            this.textBox1.Location = new System.Drawing.Point(144, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
+            this.textBoxOldFile.Location = new System.Drawing.Point(144, 46);
+            this.textBoxOldFile.Name = "textBoxOldFile";
+            this.textBoxOldFile.Size = new System.Drawing.Size(100, 20);
+            this.textBoxOldFile.TabIndex = 6;
             // 
             // label16
             // 
@@ -190,15 +193,15 @@
             this.label14.TabIndex = 4;
             this.label14.Text = "Если в папке уже есть словари";
             // 
-            // NewFolderCreate
+            // buttobNewFolderCreate
             // 
-            this.NewFolderCreate.Location = new System.Drawing.Point(13, 74);
-            this.NewFolderCreate.Name = "NewFolderCreate";
-            this.NewFolderCreate.Size = new System.Drawing.Size(75, 23);
-            this.NewFolderCreate.TabIndex = 3;
-            this.NewFolderCreate.Text = "ОК";
-            this.NewFolderCreate.UseVisualStyleBackColor = true;
-            this.NewFolderCreate.Click += new System.EventHandler(this.NewFolderCreate_Click);
+            this.buttobNewFolderCreate.Location = new System.Drawing.Point(13, 74);
+            this.buttobNewFolderCreate.Name = "buttobNewFolderCreate";
+            this.buttobNewFolderCreate.Size = new System.Drawing.Size(75, 23);
+            this.buttobNewFolderCreate.TabIndex = 3;
+            this.buttobNewFolderCreate.Text = "ОК";
+            this.buttobNewFolderCreate.UseVisualStyleBackColor = true;
+            this.buttobNewFolderCreate.Click += new System.EventHandler(this.NewFolderCreate_Click);
             // 
             // textBoxNewFolder
             // 
@@ -235,9 +238,9 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.textBox6);
+            this.splitContainer3.Panel1.Controls.Add(this.textBoxFindWord);
             this.splitContainer3.Panel1.Controls.Add(this.label12);
-            this.splitContainer3.Panel1.Controls.Add(this.button1);
+            this.splitContainer3.Panel1.Controls.Add(this.buttonFindWord);
             this.splitContainer3.Panel1.Controls.Add(this.label13);
             // 
             // splitContainer3.Panel2
@@ -247,12 +250,12 @@
             this.splitContainer3.SplitterDistance = 79;
             this.splitContainer3.TabIndex = 0;
             // 
-            // textBox6
+            // textBoxFindWord
             // 
-            this.textBox6.Location = new System.Drawing.Point(6, 49);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 2;
+            this.textBoxFindWord.Location = new System.Drawing.Point(6, 49);
+            this.textBoxFindWord.Name = "textBoxFindWord";
+            this.textBoxFindWord.Size = new System.Drawing.Size(100, 20);
+            this.textBoxFindWord.TabIndex = 2;
             // 
             // label12
             // 
@@ -263,15 +266,15 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "5.Поиск перевода слова на русский";
             // 
-            // button1
+            // buttonFindWord
             // 
-            this.button1.Location = new System.Drawing.Point(133, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "ПОИСК";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonFindWord.Location = new System.Drawing.Point(133, 46);
+            this.buttonFindWord.Name = "buttonFindWord";
+            this.buttonFindWord.Size = new System.Drawing.Size(75, 23);
+            this.buttonFindWord.TabIndex = 3;
+            this.buttonFindWord.Text = "ПОИСК";
+            this.buttonFindWord.UseVisualStyleBackColor = true;
+            this.buttonFindWord.Click += new System.EventHandler(this.button1_Click);
             // 
             // label13
             // 
@@ -292,16 +295,16 @@
             // 
             // splitContainer4.Panel1
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.button7);
+            this.splitContainer4.Panel1.Controls.Add(this.buttonPrintWords);
             this.splitContainer4.Panel1.Controls.Add(this.label15);
             // 
             // splitContainer4.Panel2
             // 
-            this.splitContainer4.Panel2.Controls.Add(this.domainUpDown1);
-            this.splitContainer4.Panel2.Controls.Add(this.button6);
-            this.splitContainer4.Panel2.Controls.Add(this.textBox4);
+            this.splitContainer4.Panel2.Controls.Add(this.domainUpDownSetLanguage);
+            this.splitContainer4.Panel2.Controls.Add(this.buttonCorrecrTranslate);
+            this.splitContainer4.Panel2.Controls.Add(this.textBoxNewWord);
             this.splitContainer4.Panel2.Controls.Add(this.label9);
-            this.splitContainer4.Panel2.Controls.Add(this.textBox3);
+            this.splitContainer4.Panel2.Controls.Add(this.textBoxOldWord);
             this.splitContainer4.Panel2.Controls.Add(this.label8);
             this.splitContainer4.Panel2.Controls.Add(this.label7);
             this.splitContainer4.Panel2.Controls.Add(this.label6);
@@ -309,15 +312,15 @@
             this.splitContainer4.SplitterDistance = 52;
             this.splitContainer4.TabIndex = 0;
             // 
-            // button7
+            // buttonPrintWords
             // 
-            this.button7.Location = new System.Drawing.Point(133, 11);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 1;
-            this.button7.Text = "ВЫВЕСТИ";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.buttonPrintWords.Location = new System.Drawing.Point(133, 11);
+            this.buttonPrintWords.Name = "buttonPrintWords";
+            this.buttonPrintWords.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrintWords.TabIndex = 1;
+            this.buttonPrintWords.Text = "ВЫВЕСТИ";
+            this.buttonPrintWords.UseVisualStyleBackColor = true;
+            this.buttonPrintWords.Click += new System.EventHandler(this.button7_Click);
             // 
             // label15
             // 
@@ -328,32 +331,32 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "7.Вывод всего словаря";
             // 
-            // domainUpDown1
+            // domainUpDownSetLanguage
             // 
-            this.domainUpDown1.Items.Add("ENG");
-            this.domainUpDown1.Items.Add("RUS");
-            this.domainUpDown1.Location = new System.Drawing.Point(13, 42);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.domainUpDown1.TabIndex = 9;
-            this.domainUpDown1.SelectedItemChanged += new System.EventHandler(this.domainUpDown1_SelectedItemChanged);
+            this.domainUpDownSetLanguage.Items.Add("ENG");
+            this.domainUpDownSetLanguage.Items.Add("RUS");
+            this.domainUpDownSetLanguage.Location = new System.Drawing.Point(13, 42);
+            this.domainUpDownSetLanguage.Name = "domainUpDownSetLanguage";
+            this.domainUpDownSetLanguage.Size = new System.Drawing.Size(120, 20);
+            this.domainUpDownSetLanguage.TabIndex = 9;
+            this.domainUpDownSetLanguage.SelectedItemChanged += new System.EventHandler(this.domainUpDown1_SelectedItemChanged);
             // 
-            // button6
+            // buttonCorrecrTranslate
             // 
-            this.button6.Location = new System.Drawing.Point(133, 86);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "ПРИНЯТЬ";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.buttonCorrecrTranslate.Location = new System.Drawing.Point(133, 86);
+            this.buttonCorrecrTranslate.Name = "buttonCorrecrTranslate";
+            this.buttonCorrecrTranslate.Size = new System.Drawing.Size(75, 23);
+            this.buttonCorrecrTranslate.TabIndex = 8;
+            this.buttonCorrecrTranslate.Text = "ПРИНЯТЬ";
+            this.buttonCorrecrTranslate.UseVisualStyleBackColor = true;
+            this.buttonCorrecrTranslate.Click += new System.EventHandler(this.button6_Click);
             // 
-            // textBox4
+            // textBoxNewWord
             // 
-            this.textBox4.Location = new System.Drawing.Point(10, 125);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 7;
+            this.textBoxNewWord.Location = new System.Drawing.Point(10, 125);
+            this.textBoxNewWord.Name = "textBoxNewWord";
+            this.textBoxNewWord.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNewWord.TabIndex = 7;
             // 
             // label9
             // 
@@ -364,12 +367,12 @@
             this.label9.TabIndex = 6;
             this.label9.Text = "Теперь исправленный";
             // 
-            // textBox3
+            // textBoxOldWord
             // 
-            this.textBox3.Location = new System.Drawing.Point(11, 86);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 5;
+            this.textBoxOldWord.Location = new System.Drawing.Point(11, 86);
+            this.textBoxOldWord.Name = "textBoxOldWord";
+            this.textBoxOldWord.Size = new System.Drawing.Size(100, 20);
+            this.textBoxOldWord.TabIndex = 5;
             // 
             // label8
             // 
@@ -431,14 +434,15 @@
             // 
             // splitContainer7.Panel2
             // 
+            this.splitContainer7.Panel2.Controls.Add(this.buttonSaveOptions);
             this.splitContainer7.Panel2.Controls.Add(this.labelCount);
             this.splitContainer7.Panel2.Controls.Add(this.buttonForTests);
             this.splitContainer7.Panel2.Controls.Add(this.domainUpDownForTests);
-            this.splitContainer7.Panel2.Controls.Add(this.listAnswersSend);
+            this.splitContainer7.Panel2.Controls.Add(this.buttonListAnswersSend);
             this.splitContainer7.Panel2.Controls.Add(this.label10);
             this.splitContainer7.Panel2.Controls.Add(this.listAnswersLabel2);
             this.splitContainer7.Panel2.Controls.Add(this.label11);
-            this.splitContainer7.Panel2.Controls.Add(this.textBox5);
+            this.splitContainer7.Panel2.Controls.Add(this.textBoxAnswers);
             this.splitContainer7.Size = new System.Drawing.Size(625, 277);
             this.splitContainer7.SplitterDistance = 136;
             this.splitContainer7.TabIndex = 0;
@@ -453,7 +457,7 @@
             // splitContainer6.Panel1
             // 
             this.splitContainer6.Panel1.Controls.Add(this.buttonCreateDictionary);
-            this.splitContainer6.Panel1.Controls.Add(this.createDictionaryText);
+            this.splitContainer6.Panel1.Controls.Add(this.textBoxCreateDictionaryText);
             this.splitContainer6.Panel1.Controls.Add(this.label3);
             this.splitContainer6.Panel1.Controls.Add(this.label4);
             // 
@@ -474,12 +478,12 @@
             this.buttonCreateDictionary.UseVisualStyleBackColor = true;
             this.buttonCreateDictionary.Click += new System.EventHandler(this.buttonCreateDictionary_Click);
             // 
-            // createDictionaryText
+            // textBoxCreateDictionaryText
             // 
-            this.createDictionaryText.Location = new System.Drawing.Point(12, 46);
-            this.createDictionaryText.Name = "createDictionaryText";
-            this.createDictionaryText.Size = new System.Drawing.Size(100, 20);
-            this.createDictionaryText.TabIndex = 3;
+            this.textBoxCreateDictionaryText.Location = new System.Drawing.Point(12, 46);
+            this.textBoxCreateDictionaryText.Name = "textBoxCreateDictionaryText";
+            this.textBoxCreateDictionaryText.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCreateDictionaryText.TabIndex = 3;
             // 
             // label3
             // 
@@ -508,30 +512,32 @@
             // 
             // splitContainer8.Panel1
             // 
-            this.splitContainer8.Panel1.Controls.Add(this.button2);
+            this.splitContainer8.Panel1.Controls.Add(this.buttonSetNewWords);
             this.splitContainer8.Panel1.Controls.Add(this.label17);
-            this.splitContainer8.Panel1.Controls.Add(this.textBox7);
+            this.splitContainer8.Panel1.Controls.Add(this.textBoxRussianWord);
             this.splitContainer8.Panel1.Controls.Add(this.label18);
             this.splitContainer8.Panel1.Controls.Add(this.label19);
-            this.splitContainer8.Panel1.Controls.Add(this.textBox2);
+            this.splitContainer8.Panel1.Controls.Add(this.textBoxEnglishWord);
             // 
             // splitContainer8.Panel2
             // 
-            this.splitContainer8.Panel2.Controls.Add(this.button3);
+            this.splitContainer8.Panel2.Controls.Add(this.buttonPrintOptions);
+            this.splitContainer8.Panel2.Controls.Add(this.label23);
+            this.splitContainer8.Panel2.Controls.Add(this.buttonPrintDictionaries);
             this.splitContainer8.Panel2.Controls.Add(this.label5);
             this.splitContainer8.Size = new System.Drawing.Size(409, 136);
             this.splitContainer8.SplitterDistance = 227;
             this.splitContainer8.TabIndex = 0;
             // 
-            // button2
+            // buttonSetNewWords
             // 
-            this.button2.Location = new System.Drawing.Point(126, 69);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "OK";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonSetNewWords.Location = new System.Drawing.Point(126, 69);
+            this.buttonSetNewWords.Name = "buttonSetNewWords";
+            this.buttonSetNewWords.Size = new System.Drawing.Size(75, 23);
+            this.buttonSetNewWords.TabIndex = 9;
+            this.buttonSetNewWords.Text = "OK";
+            this.buttonSetNewWords.UseVisualStyleBackColor = true;
+            this.buttonSetNewWords.Click += new System.EventHandler(this.button2_Click);
             // 
             // label17
             // 
@@ -543,12 +549,12 @@
             this.label17.TabIndex = 4;
             this.label17.Text = "3.Добавление новых слов";
             // 
-            // textBox7
+            // textBoxRussianWord
             // 
-            this.textBox7.Location = new System.Drawing.Point(6, 90);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 7;
+            this.textBoxRussianWord.Location = new System.Drawing.Point(6, 90);
+            this.textBoxRussianWord.Name = "textBoxRussianWord";
+            this.textBoxRussianWord.Size = new System.Drawing.Size(100, 20);
+            this.textBoxRussianWord.TabIndex = 7;
             // 
             // label18
             // 
@@ -568,22 +574,41 @@
             this.label19.TabIndex = 8;
             this.label19.Text = "А теперь его перевод";
             // 
-            // textBox2
+            // textBoxEnglishWord
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 6;
+            this.textBoxEnglishWord.Location = new System.Drawing.Point(6, 46);
+            this.textBoxEnglishWord.Name = "textBoxEnglishWord";
+            this.textBoxEnglishWord.Size = new System.Drawing.Size(100, 20);
+            this.textBoxEnglishWord.TabIndex = 6;
             // 
-            // button3
+            // buttonPrintOptions
             // 
-            this.button3.Location = new System.Drawing.Point(6, 30);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "ВЫВЕСТИ";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonPrintOptions.Location = new System.Drawing.Point(7, 86);
+            this.buttonPrintOptions.Name = "buttonPrintOptions";
+            this.buttonPrintOptions.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrintOptions.TabIndex = 3;
+            this.buttonPrintOptions.Text = "ПОКАЗАТЬ";
+            this.buttonPrintOptions.UseVisualStyleBackColor = true;
+            this.buttonPrintOptions.Click += new System.EventHandler(this.buttonPrintOptions_Click);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(4, 73);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(156, 13);
+            this.label23.TabIndex = 2;
+            this.label23.Text = "9. Отслеживание повторений";
+            // 
+            // buttonPrintDictionaries
+            // 
+            this.buttonPrintDictionaries.Location = new System.Drawing.Point(6, 30);
+            this.buttonPrintDictionaries.Name = "buttonPrintDictionaries";
+            this.buttonPrintDictionaries.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrintDictionaries.TabIndex = 1;
+            this.buttonPrintDictionaries.Text = "ВЫВЕСТИ";
+            this.buttonPrintDictionaries.UseVisualStyleBackColor = true;
+            this.buttonPrintDictionaries.Click += new System.EventHandler(this.button3_Click);
             // 
             // label5
             // 
@@ -593,6 +618,16 @@
             this.label5.Size = new System.Drawing.Size(104, 13);
             this.label5.TabIndex = 0;
             this.label5.Text = "4.Список словарей";
+            // 
+            // buttonSaveOptions
+            // 
+            this.buttonSaveOptions.Location = new System.Drawing.Point(251, 34);
+            this.buttonSaveOptions.Name = "buttonSaveOptions";
+            this.buttonSaveOptions.Size = new System.Drawing.Size(264, 23);
+            this.buttonSaveOptions.TabIndex = 12;
+            this.buttonSaveOptions.Text = "СОХРАНИТЬ СОСТОЯНИЕ";
+            this.buttonSaveOptions.UseVisualStyleBackColor = true;
+            this.buttonSaveOptions.Click += new System.EventHandler(this.buttonSaveOptions_Click);
             // 
             // labelCount
             // 
@@ -621,15 +656,15 @@
             this.domainUpDownForTests.Size = new System.Drawing.Size(120, 20);
             this.domainUpDownForTests.TabIndex = 9;
             // 
-            // listAnswersSend
+            // buttonListAnswersSend
             // 
-            this.listAnswersSend.Location = new System.Drawing.Point(125, 106);
-            this.listAnswersSend.Name = "listAnswersSend";
-            this.listAnswersSend.Size = new System.Drawing.Size(75, 23);
-            this.listAnswersSend.TabIndex = 7;
-            this.listAnswersSend.Text = "OK";
-            this.listAnswersSend.UseVisualStyleBackColor = true;
-            this.listAnswersSend.Click += new System.EventHandler(this.listAnswersSend_Click);
+            this.buttonListAnswersSend.Location = new System.Drawing.Point(125, 106);
+            this.buttonListAnswersSend.Name = "buttonListAnswersSend";
+            this.buttonListAnswersSend.Size = new System.Drawing.Size(75, 23);
+            this.buttonListAnswersSend.TabIndex = 7;
+            this.buttonListAnswersSend.Text = "OK";
+            this.buttonListAnswersSend.UseVisualStyleBackColor = true;
+            this.buttonListAnswersSend.Click += new System.EventHandler(this.listAnswersSend_Click);
             // 
             // label10
             // 
@@ -657,20 +692,12 @@
             this.label11.TabIndex = 1;
             this.label11.Text = "Выберите, какие слова вы будете проверять";
             // 
-            // textBox5
+            // textBoxAnswers
             // 
-            this.textBox5.Location = new System.Drawing.Point(6, 106);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 6;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(3, 15);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(0, 13);
-            this.label20.TabIndex = 0;
+            this.textBoxAnswers.Location = new System.Drawing.Point(6, 106);
+            this.textBoxAnswers.Name = "textBoxAnswers";
+            this.textBoxAnswers.Size = new System.Drawing.Size(100, 20);
+            this.textBoxAnswers.TabIndex = 6;
             // 
             // splitContainer9
             // 
@@ -694,14 +721,32 @@
             this.splitContainer9.SplitterDistance = 86;
             this.splitContainer9.TabIndex = 0;
             // 
-            // label21
+            // label20
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(4, 11);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(142, 13);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "8.1 Включить темную тему";
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(3, 15);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(0, 13);
+            this.label20.TabIndex = 0;
+            // 
+            // buttonLightTheme
+            // 
+            this.buttonLightTheme.Location = new System.Drawing.Point(536, 8);
+            this.buttonLightTheme.Name = "buttonLightTheme";
+            this.buttonLightTheme.Size = new System.Drawing.Size(75, 23);
+            this.buttonLightTheme.TabIndex = 3;
+            this.buttonLightTheme.Text = "LIGHT";
+            this.buttonLightTheme.UseVisualStyleBackColor = true;
+            this.buttonLightTheme.Click += new System.EventHandler(this.buttonLightTheme_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(384, 11);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(146, 13);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "8.2 Включить светлую тему";
             // 
             // buttonDarkTheme
             // 
@@ -713,24 +758,14 @@
             this.buttonDarkTheme.UseVisualStyleBackColor = true;
             this.buttonDarkTheme.Click += new System.EventHandler(this.buttonDarkTheme_Click);
             // 
-            // label22
+            // label21
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(384, 11);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(146, 13);
-            this.label22.TabIndex = 2;
-            this.label22.Text = "8.2 Включить светлую тему";
-            // 
-            // buttonLightTheme
-            // 
-            this.buttonLightTheme.Location = new System.Drawing.Point(536, 8);
-            this.buttonLightTheme.Name = "buttonLightTheme";
-            this.buttonLightTheme.Size = new System.Drawing.Size(75, 23);
-            this.buttonLightTheme.TabIndex = 3;
-            this.buttonLightTheme.Text = "LIGHT";
-            this.buttonLightTheme.UseVisualStyleBackColor = true;
-            this.buttonLightTheme.Click += new System.EventHandler(this.buttonLightTheme_Click);
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(4, 11);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(142, 13);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "8.1 Включить темную тему";
             // 
             // Form1
             // 
@@ -798,51 +833,51 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.Button NewFolderCreate;
+        private System.Windows.Forms.Button buttobNewFolderCreate;
         private System.Windows.Forms.TextBox textBoxNewFolder;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.TextBox createDictionaryText;
+        private System.Windows.Forms.TextBox textBoxCreateDictionaryText;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonCreateDictionary;
         private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonPrintDictionaries;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button buttonCorrecrTranslate;
+        private System.Windows.Forms.TextBox textBoxNewWord;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxOldWord;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.SplitContainer splitContainer5;
-        private System.Windows.Forms.Button listAnswersSend;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button buttonListAnswersSend;
+        private System.Windows.Forms.TextBox textBoxAnswers;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxOldFile;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.SplitContainer splitContainer7;
         private System.Windows.Forms.Label listAnswersLabel2;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxRussianWord;
+        private System.Windows.Forms.TextBox textBoxEnglishWord;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button buttonSetNewWords;
+        private System.Windows.Forms.TextBox textBoxFindWord;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonFindWord;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button buttonPrintWords;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.SplitContainer splitContainer8;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.DomainUpDown domainUpDownSetLanguage;
         private System.Windows.Forms.DomainUpDown domainUpDownForTests;
         private System.Windows.Forms.Button buttonForTests;
         private System.Windows.Forms.Label labelCount;
@@ -851,6 +886,9 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button buttonDarkTheme;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button buttonPrintOptions;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button buttonSaveOptions;
     }
 }
 

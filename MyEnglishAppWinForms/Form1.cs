@@ -54,8 +54,8 @@ namespace MyEnglishAppWinForms
         private void Form1_NewWords()
         {
             MessageBox.Show("Ваши слова были добавлены в словарь", "Результат");
-            textBox2.Text = "";
-            textBox7.Text = "";
+            textBoxEnglishWord.Text = "";
+            textBoxRussianWord.Text = "";
         }
         /// <summary>
         /// Обработчик события создания словаря
@@ -70,9 +70,9 @@ namespace MyEnglishAppWinForms
         private void NewFolderCreate_Click(object sender, EventArgs e)
         {
             FolderName = textBoxNewFolder.Text;
-            FileName = textBox1.Text;
+            FileName = textBoxOldFile.Text;
             this.CreateUser();
-            textBox1.Text = "";
+            textBoxOldFile.Text = "";
         }
         //Кнопка: создание словаря
         private void buttonCreateDictionary_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace MyEnglishAppWinForms
        //Кнопка: внесение ответа на тест на обработку
         private  void listAnswersSend_Click(object sender, EventArgs e)
         {
-            Task.Factory.StartNew(() => { answer = textBox5.Text; });
+            Task.Factory.StartNew(() => { answer = textBoxAnswers.Text; });
         }
 
         
@@ -115,14 +115,14 @@ namespace MyEnglishAppWinForms
         //Кнопка: добавление новых слов
         private void button2_Click(object sender, EventArgs e)
         {
-            this.SetNewWords(textBox2.Text, textBox7.Text);
+            this.SetNewWords(textBoxEnglishWord.Text, textBoxRussianWord.Text);
         }
 
         
         //Элемент прокрутки: выбор языка для замены перевода
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
-            switch (domainUpDown1.Text)
+            switch (domainUpDownSetLanguage.Text)
             {
                 case "ENG":
                     typeword = "eng";
@@ -150,6 +150,7 @@ namespace MyEnglishAppWinForms
         private void buttonDarkTheme_Click(object sender, EventArgs e)
         {
             buttonDarkTheme.Enabled = false;
+            #region Labels
             label1.ForeColor = Color.White;
             label10.ForeColor = Color.White;
             label11.ForeColor = Color.White;
@@ -173,7 +174,63 @@ namespace MyEnglishAppWinForms
             label8.ForeColor = Color.White;
             label9.ForeColor = Color.White;
             labelCount.ForeColor = Color.White;
+            label23.ForeColor = Color.White;
             listAnswersLabel2.ForeColor = Color.White;
+            #endregion
+            #region TextBoxes
+            textBoxOldFile.BackColor = Color.Black;
+            textBoxOldFile.ForeColor = Color.White;
+            textBoxEnglishWord.BackColor = Color.Black;
+            textBoxEnglishWord.ForeColor = Color.White;
+            textBoxOldWord.BackColor = Color.Black;
+            textBoxOldWord.ForeColor = Color.White;
+            textBoxNewWord.BackColor = Color.Black;
+            textBoxNewWord.ForeColor = Color.White;
+            textBoxAnswers.BackColor = Color.Black;
+            textBoxAnswers.ForeColor = Color.White;
+            textBoxFindWord.BackColor = Color.Black;
+            textBoxFindWord.ForeColor = Color.White;
+            textBoxRussianWord.BackColor = Color.Black;
+            textBoxRussianWord.ForeColor = Color.White;
+            textBoxNewFolder.BackColor = Color.Black;
+            textBoxNewFolder.ForeColor = Color.White;
+            textBoxCreateDictionaryText.BackColor = Color.Black;
+            textBoxCreateDictionaryText.ForeColor = Color.White;
+            #endregion
+            #region Buttons
+            buttonFindWord.BackColor = Color.Black;
+            buttonFindWord.ForeColor = Color.White;
+            buttonSetNewWords.ForeColor = Color.White;
+            buttonSetNewWords.BackColor = Color.Black;
+            buttonPrintDictionaries.BackColor = Color.Black;
+            buttonPrintDictionaries.ForeColor = Color.White;
+            buttonCorrecrTranslate.BackColor = Color.Black;
+            buttonCorrecrTranslate.ForeColor = Color.White;
+            buttonPrintWords.BackColor = Color.Black;
+            buttonPrintWords.ForeColor = Color.White;
+            buttonCreateDictionary.BackColor = Color.Black;
+            buttonCreateDictionary.ForeColor = Color.White;
+            buttonDarkTheme.BackColor = Color.Black;
+            buttonDarkTheme.ForeColor = Color.White;
+            buttonForTests.BackColor = Color.Black;
+            buttonForTests.ForeColor = Color.White;
+            buttonLightTheme.BackColor = Color.Black;
+            buttonLightTheme.ForeColor = Color.White;
+            buttonPrintOptions.BackColor = Color.Black;
+            buttonPrintOptions.ForeColor = Color.White;
+            buttonSaveOptions.BackColor = Color.Black;
+            buttonSaveOptions.ForeColor = Color.White;
+            buttonListAnswersSend.BackColor = Color.Black;
+            buttonListAnswersSend.ForeColor = Color.White;
+            buttobNewFolderCreate.BackColor = Color.Black;
+            buttobNewFolderCreate.ForeColor = Color.White;
+            #endregion
+            #region Domains
+            domainUpDownSetLanguage.BackColor = Color.Black;
+            domainUpDownSetLanguage.ForeColor = Color.White;
+            domainUpDownForTests.BackColor = Color.Black;
+            domainUpDownForTests.ForeColor = Color.White;
+            #endregion
             BackColor = Color.Black;
             buttonLightTheme.Enabled = true;
             
@@ -184,6 +241,7 @@ namespace MyEnglishAppWinForms
         private void buttonLightTheme_Click(object sender, EventArgs e)
         {
             buttonLightTheme.Enabled = false;
+            #region Labels
             label1.ForeColor = Color.Black;
             label10.ForeColor = Color.Black;
             label11.ForeColor = Color.Black;
@@ -207,9 +265,75 @@ namespace MyEnglishAppWinForms
             label8.ForeColor = Color.Black;
             label9.ForeColor = Color.Black;
             labelCount.ForeColor = Color.Black;
+            label23.ForeColor = Color.Black;
             listAnswersLabel2.ForeColor = Color.Black;
+            #endregion
+            #region TextBoxes
+            textBoxOldFile.BackColor = Color.White;
+            textBoxOldFile.ForeColor = Color.Black;
+            textBoxEnglishWord.BackColor = Color.White;
+            textBoxEnglishWord.ForeColor = Color.Black;
+            textBoxOldWord.BackColor = Color.White;
+            textBoxOldWord.ForeColor = Color.Black;
+            textBoxNewWord.BackColor = Color.White;
+            textBoxNewWord.ForeColor = Color.Black;
+            textBoxAnswers.BackColor = Color.White;
+            textBoxAnswers.ForeColor = Color.Black;
+            textBoxFindWord.BackColor = Color.White;
+            textBoxFindWord.ForeColor = Color.Black;
+            textBoxRussianWord.BackColor = Color.White;
+            textBoxRussianWord.ForeColor = Color.Black;
+            textBoxNewFolder.BackColor = Color.White;
+            textBoxNewFolder.ForeColor = Color.Black;
+            textBoxCreateDictionaryText.BackColor = Color.White;
+            textBoxCreateDictionaryText.ForeColor = Color.Black;
+            #endregion
+            #region Buttons
+            buttonFindWord.BackColor = Color.White;
+            buttonFindWord.ForeColor = Color.Black;
+            buttonSetNewWords.ForeColor = Color.Black;
+            buttonSetNewWords.BackColor = Color.White;
+            buttonPrintDictionaries.BackColor = Color.White;
+            buttonPrintDictionaries.ForeColor = Color.Black;
+            buttonCorrecrTranslate.BackColor = Color.White;
+            buttonCorrecrTranslate.ForeColor = Color.Black;
+            buttonPrintWords.BackColor = Color.White;
+            buttonPrintWords.ForeColor = Color.Black;
+            buttonCreateDictionary.BackColor = Color.White;
+            buttonCreateDictionary.ForeColor = Color.Black;
+            buttonDarkTheme.BackColor = Color.White;
+            buttonDarkTheme.ForeColor = Color.Black;
+            buttonForTests.BackColor = Color.White;
+            buttonForTests.ForeColor = Color.Black;
+            buttonLightTheme.BackColor = Color.White;
+            buttonLightTheme.ForeColor = Color.Black;
+            buttonPrintOptions.BackColor = Color.White;
+            buttonPrintOptions.ForeColor = Color.Black;
+            buttonSaveOptions.BackColor = Color.White; ;
+            buttonSaveOptions.ForeColor = Color.Black;
+            buttonListAnswersSend.BackColor = Color.White;
+            buttonListAnswersSend.ForeColor = Color.Black;
+            buttobNewFolderCreate.BackColor = Color.White;
+            buttobNewFolderCreate.ForeColor = Color.Black;
+            #endregion
+            #region Domains
+            domainUpDownSetLanguage.BackColor = Color.White;
+            domainUpDownSetLanguage.ForeColor = Color.Black;
+            domainUpDownForTests.BackColor = Color.White;
+            domainUpDownForTests.ForeColor = Color.Black;
+            #endregion
             BackColor = Color.White;
             buttonDarkTheme.Enabled = true;
+        }
+        //Кнопка: вывод состояния объекта повторений
+        private void buttonPrintOptions_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(controller.PrintMyOptions(), "Параметры");
+        }
+        //Кнопка: сохранить параметры
+        private void buttonSaveOptions_Click(object sender, EventArgs e)
+        {
+            SaveNewOptions();
         }
     }
 }
