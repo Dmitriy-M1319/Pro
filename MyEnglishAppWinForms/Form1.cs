@@ -224,6 +224,8 @@ namespace MyEnglishAppWinForms
             buttonListAnswersSend.ForeColor = Color.White;
             buttobNewFolderCreate.BackColor = Color.Black;
             buttobNewFolderCreate.ForeColor = Color.White;
+            buttonInputForm.ForeColor = Color.White;
+            buttonInputForm.BackColor = Color.Black;
             #endregion
             #region Domains
             domainUpDownSetLanguage.BackColor = Color.Black;
@@ -315,6 +317,8 @@ namespace MyEnglishAppWinForms
             buttonListAnswersSend.ForeColor = Color.Black;
             buttobNewFolderCreate.BackColor = Color.White;
             buttobNewFolderCreate.ForeColor = Color.Black;
+            buttonInputForm.ForeColor = Color.Black;
+            buttonInputForm.BackColor =Color.White;
             #endregion
             #region Domains
             domainUpDownSetLanguage.BackColor = Color.White;
@@ -334,6 +338,12 @@ namespace MyEnglishAppWinForms
         private void buttonSaveOptions_Click(object sender, EventArgs e)
         {
             SaveNewOptions();
+        }
+        //Кнопка: вызов формы с добавлением списка слов
+        private void buttonInputForm_Click(object sender, EventArgs e)
+        {
+            InputForm form = new InputForm();
+            form.Show();
         }
     }
 }

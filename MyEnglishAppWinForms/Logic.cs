@@ -48,8 +48,13 @@ namespace MyEnglishAppWinForms
         /// </summary>
         public string FolderName { get; set; } = "-";
         /// <summary>
+        /// Полный путь к словарю
+        /// </summary>
+        public static string FullPath { get; private set; }
+        /// <summary>
         /// Создание пользователя приложения
         /// </summary>
+
         public void CreateUser()
         {
             DirectoryInfo folderDirectory = new DirectoryInfo(".");
@@ -113,6 +118,7 @@ namespace MyEnglishAppWinForms
                     }
                 }
                 Count = englishWords.Count;
+                FullPath = $@"{newFolder.FullName}\{FileName}.txt";
             }
             catch (Exception)
             {
@@ -431,6 +437,7 @@ namespace MyEnglishAppWinForms
                 string str = englishword + "\t" + russianword;
                 sw.WriteLine(str);
                 sw.Close();
+                
             }
             NewWords?.Invoke();
             //TODO:Добавить форму занесения данных

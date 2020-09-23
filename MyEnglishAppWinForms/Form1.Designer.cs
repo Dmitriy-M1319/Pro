@@ -87,6 +87,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.buttonDarkTheme = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
+            this.buttonInputForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -512,6 +513,7 @@
             // 
             // splitContainer8.Panel1
             // 
+            this.splitContainer8.Panel1.Controls.Add(this.buttonInputForm);
             this.splitContainer8.Panel1.Controls.Add(this.buttonSetNewWords);
             this.splitContainer8.Panel1.Controls.Add(this.label17);
             this.splitContainer8.Panel1.Controls.Add(this.textBoxRussianWord);
@@ -551,7 +553,7 @@
             // 
             // textBoxRussianWord
             // 
-            this.textBoxRussianWord.Location = new System.Drawing.Point(6, 90);
+            this.textBoxRussianWord.Location = new System.Drawing.Point(6, 85);
             this.textBoxRussianWord.Name = "textBoxRussianWord";
             this.textBoxRussianWord.Size = new System.Drawing.Size(100, 20);
             this.textBoxRussianWord.TabIndex = 7;
@@ -568,7 +570,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(3, 74);
+            this.label19.Location = new System.Drawing.Point(3, 69);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(117, 13);
             this.label19.TabIndex = 8;
@@ -767,6 +769,16 @@
             this.label21.TabIndex = 0;
             this.label21.Text = "8.1 Включить темную тему";
             // 
+            // buttonInputForm
+            // 
+            this.buttonInputForm.Location = new System.Drawing.Point(30, 111);
+            this.buttonInputForm.Name = "buttonInputForm";
+            this.buttonInputForm.Size = new System.Drawing.Size(171, 23);
+            this.buttonInputForm.TabIndex = 10;
+            this.buttonInputForm.Text = "ДОБАВИТЬ СПИСОК";
+            this.buttonInputForm.UseVisualStyleBackColor = true;
+            this.buttonInputForm.Click += new System.EventHandler(this.buttonInputForm_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -889,6 +901,7 @@
         private System.Windows.Forms.Button buttonPrintOptions;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button buttonSaveOptions;
+        private System.Windows.Forms.Button buttonInputForm;
     }
 }
 
