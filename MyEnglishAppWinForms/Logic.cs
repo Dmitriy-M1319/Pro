@@ -57,6 +57,8 @@ namespace MyEnglishAppWinForms
 
         public void CreateUser()
         {
+            buttonSetNewWords.Enabled = false;
+            buttonInputForm.Enabled = false;
             DirectoryInfo folderDirectory = new DirectoryInfo(".");
             //1 раз: для того, чтобы этот объект не был null
             newFolder = new DirectoryInfo($@"{folderDirectory.FullName}\{FolderName}");
@@ -119,6 +121,9 @@ namespace MyEnglishAppWinForms
                 }
                 Count = englishWords.Count;
                 FullPath = $@"{newFolder.FullName}\{FileName}.txt";
+                AreButtonsEnabled(true);
+                buttonSetNewWords.Enabled = true;
+                buttonInputForm.Enabled = true;
             }
             catch (Exception)
             {
@@ -139,7 +144,7 @@ namespace MyEnglishAppWinForms
             }
             catch (Exception)
             {
-                controller =new  MyLearningController();
+                controller = new  MyLearningController();
             }
             
         }
@@ -154,6 +159,8 @@ namespace MyEnglishAppWinForms
             sw.Close();
             NewFile?.Invoke();
             textBoxCreateDictionaryText.Text = "";
+            buttonSetNewWords.Enabled = true;
+            buttonInputForm.Enabled = true;
         }
         /// <summary>
         /// Вывод списка доступных словарей
@@ -440,7 +447,7 @@ namespace MyEnglishAppWinForms
                 
             }
             NewWords?.Invoke();
-            //TODO:Добавить форму занесения данных
+            AreButtonsEnabled(true);
         }
 
        /// <summary>
@@ -478,6 +485,21 @@ namespace MyEnglishAppWinForms
             {
                 formatter.Serialize(fs, controller);
             }
+        }
+        /// <summary>
+        /// Функция включения\выключения кнопок
+        /// </summary>
+        /// <param name="option"></param>
+        public  void AreButtonsEnabled(bool option)
+        {
+            buttonCorrecrTranslate.Enabled = option;
+            buttonFindWord.Enabled = option;
+            buttonForTests.Enabled = option;
+            buttonInputForm.Enabled = option;
+            buttonListAnswersSend.Enabled = option;
+            buttonPrintOptions.Enabled = option;
+            buttonPrintWords.Enabled = option;
+            buttonSaveOptions.Enabled = option;
         }
     }
 }

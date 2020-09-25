@@ -18,6 +18,7 @@ namespace MyEnglishAppWinForms
             Form1.Correcting += Form1_Correcting;
             InstructionFirstTime();
             HelloApp();
+            AreButtonsEnabled(false);
         }
         /// <summary>
         /// Инструкция для первого запуска
@@ -65,8 +66,12 @@ namespace MyEnglishAppWinForms
             MessageBox.Show("Был создан новый текстовый файл!","Результат");
         }
 
-   
-        //Кнопка: загрузка данных в приложение
+
+        /// <summary>
+        /// Кнопка: загрузка данных в приложение
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewFolderCreate_Click(object sender, EventArgs e)
         {
             FolderName = textBoxNewFolder.Text;
@@ -74,52 +79,84 @@ namespace MyEnglishAppWinForms
             this.CreateUser();
             textBoxOldFile.Text = "";
         }
-        //Кнопка: создание словаря
+        /// <summary>
+        /// Кнопка: создание словаря
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCreateDictionary_Click(object sender, EventArgs e)
         {
             this.CreateNewDictionary();
         }
-        //Кнопка: вывод списка словарей
+        /// <summary>
+        /// Кнопка: вывод списка словарей
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
             this.CheckDictionaries();
         }
-       
-        
-        //Кнопка: замена неправильного перевода
+
+
+        /// <summary>
+        /// Кнопка: замена неправильного перевода
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button6_Click(object sender, EventArgs e)
         {
             this.CorrectWord();
         }
-       //Кнопка: внесение ответа на тест на обработку
-        private  void listAnswersSend_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Кнопка: внесение ответа на тест на обработку
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listAnswersSend_Click(object sender, EventArgs e)
         {
             Task.Factory.StartNew(() => { answer = textBoxAnswers.Text; });
         }
 
-        
 
-       
-        //Кнопка: поиск слова
+
+
+        /// <summary>
+        /// Кнопка: поиск слова
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             this.FindWord();
         }
-        // Кнопка: вывод словаря на экран
+        /// <summary>
+        /// Кнопка: вывод словаря на экран
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button7_Click(object sender, EventArgs e)
         {
             this.Print();
         }
 
-        
-        //Кнопка: добавление новых слов
+
+        /// <summary>
+        /// Кнопка: добавление новых слов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             this.SetNewWords(textBoxEnglishWord.Text, textBoxRussianWord.Text);
         }
 
-        
-        //Элемент прокрутки: выбор языка для замены перевода
+
+        /// <summary>
+        /// Элемент выбора: выбор типа слова
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
             switch (domainUpDownSetLanguage.Text)
@@ -133,7 +170,11 @@ namespace MyEnglishAppWinForms
                
             }
         }
-        //Кнопка: выбор режима тестирования
+        /// <summary>
+        /// Кнопка: выбор режима тестирования
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonForTests_Click(object sender, EventArgs e)
         {
             switch (domainUpDownForTests.Text)
@@ -146,7 +187,11 @@ namespace MyEnglishAppWinForms
                     break;
             }
         }
-        //Кнопка: включение темной темы
+        /// <summary>
+        /// Кнопка: включение темной темы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDarkTheme_Click(object sender, EventArgs e)
         {
             buttonDarkTheme.Enabled = false;
@@ -237,9 +282,13 @@ namespace MyEnglishAppWinForms
             buttonLightTheme.Enabled = true;
             
         }
-        
 
-        //Кнопка: включение светлой темы
+
+        /// <summary>
+        /// Кнопка: включение светлой темы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonLightTheme_Click(object sender, EventArgs e)
         {
             buttonLightTheme.Enabled = false;
@@ -329,21 +378,34 @@ namespace MyEnglishAppWinForms
             BackColor = Color.White;
             buttonDarkTheme.Enabled = true;
         }
-        //Кнопка: вывод состояния объекта повторений
+        /// <summary>
+        /// Кнопка: вывод состояния объекта повторений
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonPrintOptions_Click(object sender, EventArgs e)
         {
             MessageBox.Show(controller.PrintMyOptions(), "Параметры");
         }
-        //Кнопка: сохранить параметры
+        /// <summary>
+        /// Кнопка: сохранить параметры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSaveOptions_Click(object sender, EventArgs e)
         {
             SaveNewOptions();
         }
-        //Кнопка: вызов формы с добавлением списка слов
+        /// <summary>
+        /// Кнопка: вызов формы с добавлением списка слов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonInputForm_Click(object sender, EventArgs e)
         {
             InputForm form = new InputForm();
             form.Show();
         }
+
     }
 }

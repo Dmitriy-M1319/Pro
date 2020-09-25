@@ -35,6 +35,8 @@ namespace MyEnglishAppWinForms
                 }
                 sw.Close();
             }
+            Form1 f = new Form1();
+            f.AreButtonsEnabled(true);
 
         }
 
