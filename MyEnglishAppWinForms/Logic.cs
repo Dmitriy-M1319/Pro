@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Runtime.Serialization.Formatters.Binary;
 using RepeatingControllers;
+using System.Threading.Tasks;
 
 namespace MyEnglishAppWinForms
 {
@@ -220,9 +221,9 @@ namespace MyEnglishAppWinForms
         /// <summary>
         /// Тестирование для проверки знаний на русский перевод
         /// </summary>
-        public  void ListRussianAnswers()
+        public  void TestRussianAnswers()
         {
-            Thread thread = new Thread(new ThreadStart(() => {
+            
                 int trueAnswers = 0;
                 bool count;
                 List<string> falseanswers = new List<string>();
@@ -306,16 +307,22 @@ namespace MyEnglishAppWinForms
                 
 
 
-            }));
-            thread.Start();
 
+        }
+        /// <summary>
+        /// Асинхронная версия ListRussianAnswers
+        /// </summary>
+        /// <returns></returns>
+        public async Task TestRussianAnswersAsync()
+        {
+            await Task.Run(() => TestRussianAnswers());
         }
         /// <summary>
         /// Тестирование для проверки знаний на английский перевод
         /// </summary>
-        public void ListEnglishAnswers()
+        public void TestEnglishAnswers()
         {
-            Thread thread = new Thread(new ThreadStart(() => {
+            
                 int trueAnswers = 0;
                 bool count;
                 List<string> falseanswers = new List<string>();
@@ -397,9 +404,16 @@ namespace MyEnglishAppWinForms
                 }
 
 
-            }));
-            thread.Start();
+           
 
+        }
+        /// <summary>
+        /// Асинхронная версия ListEnglishAnswers
+        /// </summary>
+        /// <returns></returns>
+        public async Task TestEnglishAnswersAsync()
+        {
+            await Task.Run(() => TestEnglishAnswers());
         }
         /// <summary>
         /// Поиск перевода слова по словарю

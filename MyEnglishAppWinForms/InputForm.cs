@@ -8,6 +8,7 @@ namespace MyEnglishAppWinForms
 /// </summary>
     public partial class InputForm : Form
     {
+        
         public InputForm()
         {
             InitializeComponent();
@@ -48,8 +49,9 @@ namespace MyEnglishAppWinForms
             private void buttonSetListOfWords_Click(object sender, EventArgs e)
             {
               SetListOfWords(textBoxEnglishWords.Text, textBoxRussianWords.Text);
-            textBoxRussianWords.Text = "";
-            textBoxEnglishWords.Text = "";
+              textBoxRussianWords.Text = "";
+              textBoxEnglishWords.Text = "";
+            MessageBox.Show("Список слов словаря обновлен!", "Успешно");
             }
         
     }

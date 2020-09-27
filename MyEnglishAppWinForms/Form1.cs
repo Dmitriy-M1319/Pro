@@ -115,7 +115,7 @@ namespace MyEnglishAppWinForms
         /// <param name="e"></param>
         private void listAnswersSend_Click(object sender, EventArgs e)
         {
-            Task.Factory.StartNew(() => { answer = textBoxAnswers.Text; });
+             answer = textBoxAnswers.Text;
         }
 
 
@@ -180,10 +180,10 @@ namespace MyEnglishAppWinForms
             switch (domainUpDownForTests.Text)
             {
                 case "ENG":
-                    ListRussianAnswers();
+                    TestRussianAnswersAsync();
                     break;
                 case "RUS":
-                    ListEnglishAnswers();
+                    TestEnglishAnswersAsync();
                     break;
             }
         }
