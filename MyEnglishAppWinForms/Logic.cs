@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using System.Threading;
 using System.Runtime.Serialization.Formatters.Binary;
 using RepeatingControllers;
 using System.Threading.Tasks;
@@ -19,39 +18,51 @@ namespace MyEnglishAppWinForms
         private BinaryFormatter formatter = new BinaryFormatter();
         private string answer="";
         private string typeword;
+
         /// <summary>
         /// Событие добавления новых слов
         /// </summary>
         public static event Action NewWords;
+
         /// <summary>
         /// Событие создания нового словаря
         /// </summary>
         public static event Action NewFile;
+
         /// <summary>
         /// Событие успешной замены неправильного перевода
         /// </summary>
         public static event Action Correcting;
+
         /// <summary>
         /// Лист английских слов
         /// </summary>
         private List<string> englishWords;
+
         /// <summary>
         /// Лист русских слов
         /// </summary>
         private List<string> russianWords;
+
         /// <summary>
         /// Количество слов в словаре
         /// </summary>
         public int Count { get; set; }
+
+        /// <summary>
+        /// Название словаря, с которым идет работа
+        /// </summary>
         public string FileName { get; set; }
         /// <summary>
         /// Название каталога для хранения словарей
         /// </summary>
         public string FolderName { get; set; } = "-";
+
         /// <summary>
         /// Полный путь к словарю
         /// </summary>
         public static string FullPath { get; private set; }
+
         /// <summary>
         /// Создание пользователя приложения
         /// </summary>
@@ -61,8 +72,10 @@ namespace MyEnglishAppWinForms
             buttonSetNewWords.Enabled = false;
             buttonInputForm.Enabled = false;
             DirectoryInfo folderDirectory = new DirectoryInfo(".");
+
             //1 раз: для того, чтобы этот объект не был null
             newFolder = new DirectoryInfo($@"{folderDirectory.FullName}\{FolderName}");
+
             //Попытка чтения названия папки со словарями из специального файла
             try
             {
@@ -84,6 +97,7 @@ namespace MyEnglishAppWinForms
             }
 
 
+
         //-> Вот сюда
         Link:
             // Создание новой папки
@@ -96,6 +110,7 @@ namespace MyEnglishAppWinForms
                         break;
                     }
                 }
+
                 //3 раз: создается новая папка, если таковой не было
                 newFolder = new DirectoryInfo($@"{folderDirectory.FullName}\{FolderName}");
                 newFolder.Create();
@@ -104,8 +119,10 @@ namespace MyEnglishAppWinForms
                     sw.WriteLine(FolderName);
                 }
             }
+
             englishWords = new List<string>();
             russianWords = new List<string>();
+
             //Блок загрузки словаря
             try
             {
@@ -120,6 +137,7 @@ namespace MyEnglishAppWinForms
                         russianWords.Add(words[1]);
                     }
                 }
+
                 Count = englishWords.Count;
                 FullPath = $@"{newFolder.FullName}\{FileName}.txt";
                 AreButtonsEnabled(true);
@@ -140,6 +158,11 @@ namespace MyEnglishAppWinForms
                     if(controller.NowTime.Date!=controller.NextTime.Date)
                     {
                         buttonSaveOptions.Enabled = false;
+                        if (controller.NowTime.Date > controller.NextTime.Date)
+                        {
+                            buttonSaveOptions.Enabled = true;
+                            MessageBox.Show("Вы пропустили повторение слов в данном словаре! Наверстывайте упущенное");
+                        }
                     }
                 }
             }
@@ -149,6 +172,8 @@ namespace MyEnglishAppWinForms
             }
             
         }
+
+
         /// <summary>
         /// Создание нового текстового файла для словаря
         /// </summary>
@@ -163,6 +188,8 @@ namespace MyEnglishAppWinForms
             buttonSetNewWords.Enabled = true;
             buttonInputForm.Enabled = true;
         }
+
+
         /// <summary>
         /// Вывод списка доступных словарей
         /// </summary>
@@ -177,6 +204,8 @@ namespace MyEnglishAppWinForms
             }
             MessageBox.Show(line, "Список");
         }
+
+
         /// <summary>
         /// Замена неправильного перевода
         /// </summary>
@@ -218,6 +247,8 @@ namespace MyEnglishAppWinForms
             textBoxOldWord.Text = "";
             textBoxNewWord.Text = "";
         }
+
+
         /// <summary>
         /// Тестирование для проверки знаний на русский перевод
         /// </summary>
@@ -309,6 +340,8 @@ namespace MyEnglishAppWinForms
 
 
         }
+
+
         /// <summary>
         /// Асинхронная версия ListRussianAnswers
         /// </summary>
@@ -317,6 +350,8 @@ namespace MyEnglishAppWinForms
         {
             await Task.Run(() => TestRussianAnswers());
         }
+
+
         /// <summary>
         /// Тестирование для проверки знаний на английский перевод
         /// </summary>
@@ -407,6 +442,8 @@ namespace MyEnglishAppWinForms
            
 
         }
+
+
         /// <summary>
         /// Асинхронная версия ListEnglishAnswers
         /// </summary>
@@ -415,6 +452,8 @@ namespace MyEnglishAppWinForms
         {
             await Task.Run(() => TestEnglishAnswers());
         }
+
+
         /// <summary>
         /// Поиск перевода слова по словарю
         /// </summary>
@@ -431,6 +470,8 @@ namespace MyEnglishAppWinForms
             }
             textBoxFindWord.Text = "";
         }
+
+
         /// <summary>
         /// Вывод словаря на экран
         /// </summary>
@@ -445,6 +486,8 @@ namespace MyEnglishAppWinForms
             }
             MessageBox.Show(line,"Вывод");
         }
+
+
         /// <summary>
         /// Добавление новых слов в словарь
         /// </summary>
@@ -464,9 +507,10 @@ namespace MyEnglishAppWinForms
             AreButtonsEnabled(true);
         }
 
-       /// <summary>
-       /// Сохранение состояния объекта повторений
-       /// </summary>
+
+        /// <summary>
+        /// Сохранение состояния объекта повторений
+        /// </summary>
         public void SaveNewOptions()
         {
             int k = (int)controller.Date;
@@ -500,11 +544,13 @@ namespace MyEnglishAppWinForms
                 formatter.Serialize(fs, controller);
             }
         }
+
+
         /// <summary>
         /// Функция включения\выключения кнопок
         /// </summary>
-        /// <param name="option"></param>
-        public  void AreButtonsEnabled(bool option)
+        /// <param name="option">Параметр активации кнопок</param>
+        public void AreButtonsEnabled(bool option)
         {
             buttonCorrecrTranslate.Enabled = option;
             buttonFindWord.Enabled = option;
@@ -515,5 +561,7 @@ namespace MyEnglishAppWinForms
             buttonPrintWords.Enabled = option;
             buttonSaveOptions.Enabled = option;
         }
+
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace MyEnglishAppWinForms
 {
@@ -20,6 +20,8 @@ namespace MyEnglishAppWinForms
             HelloApp();
             AreButtonsEnabled(false);
         }
+
+
         /// <summary>
         /// Инструкция для первого запуска
         /// </summary>
@@ -30,6 +32,8 @@ namespace MyEnglishAppWinForms
             label20.Text += "А последующие разы вы вводите название этой папки для открытия словарей.\n";
             label20.Text += "Вторая часть 1 функции необходима только после добавления словарей.";
         }
+
+
       /// <summary>
       /// Приветствие перед работой
       /// </summary>
@@ -42,6 +46,8 @@ namespace MyEnglishAppWinForms
             hello += "Удачи вам в изучении языка!";
             MessageBox.Show(hello,"Hello,MyEnglishWord!");
         }
+
+
         /// <summary>
         /// Обработчик события замены неправильного перевода
         /// </summary>
@@ -49,6 +55,8 @@ namespace MyEnglishAppWinForms
         {
             MessageBox.Show("Замена слова выполнена успешно!", "Успешно");
         }
+
+
         /// <summary>
         /// Обработчик события добавления новых слов
         /// </summary>
@@ -58,6 +66,8 @@ namespace MyEnglishAppWinForms
             textBoxEnglishWord.Text = "";
             textBoxRussianWord.Text = "";
         }
+
+
         /// <summary>
         /// Обработчик события создания словаря
         /// </summary>
@@ -79,6 +89,8 @@ namespace MyEnglishAppWinForms
             this.CreateUser();
             textBoxOldFile.Text = "";
         }
+
+
         /// <summary>
         /// Кнопка: создание словаря
         /// </summary>
@@ -88,6 +100,8 @@ namespace MyEnglishAppWinForms
         {
             this.CreateNewDictionary();
         }
+
+
         /// <summary>
         /// Кнопка: вывод списка словарей
         /// </summary>
@@ -108,6 +122,8 @@ namespace MyEnglishAppWinForms
         {
             this.CorrectWord();
         }
+
+
         /// <summary>
         /// Кнопка: внесение ответа на тест на обработку
         /// </summary>
@@ -119,8 +135,6 @@ namespace MyEnglishAppWinForms
         }
 
 
-
-
         /// <summary>
         /// Кнопка: поиск слова
         /// </summary>
@@ -130,6 +144,8 @@ namespace MyEnglishAppWinForms
         {
             this.FindWord();
         }
+
+
         /// <summary>
         /// Кнопка: вывод словаря на экран
         /// </summary>
@@ -170,6 +186,8 @@ namespace MyEnglishAppWinForms
                
             }
         }
+
+
         /// <summary>
         /// Кнопка: выбор режима тестирования
         /// </summary>
@@ -187,6 +205,10 @@ namespace MyEnglishAppWinForms
                     break;
             }
         }
+
+
+        //Переменная для включения/выключения темного оформления окна добавления слов
+        private bool isDarkTheme;
         /// <summary>
         /// Кнопка: включение темной темы
         /// </summary>
@@ -280,7 +302,7 @@ namespace MyEnglishAppWinForms
             #endregion
             BackColor = Color.Black;
             buttonLightTheme.Enabled = true;
-            
+            isDarkTheme = true;
         }
 
 
@@ -377,7 +399,10 @@ namespace MyEnglishAppWinForms
             #endregion
             BackColor = Color.White;
             buttonDarkTheme.Enabled = true;
+            isDarkTheme = false;
         }
+
+
         /// <summary>
         /// Кнопка: вывод состояния объекта повторений
         /// </summary>
@@ -387,6 +412,8 @@ namespace MyEnglishAppWinForms
         {
             MessageBox.Show(controller.PrintMyOptions(), "Параметры");
         }
+
+
         /// <summary>
         /// Кнопка: сохранить параметры
         /// </summary>
@@ -396,6 +423,8 @@ namespace MyEnglishAppWinForms
         {
             SaveNewOptions();
         }
+
+
         /// <summary>
         /// Кнопка: вызов формы с добавлением списка слов
         /// </summary>
@@ -404,6 +433,7 @@ namespace MyEnglishAppWinForms
         private void buttonInputForm_Click(object sender, EventArgs e)
         {
             InputForm form = new InputForm();
+            form.DoDarkOrLightTheme(isDarkTheme);
             form.Show();
         }
 
